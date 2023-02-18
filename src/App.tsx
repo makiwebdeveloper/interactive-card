@@ -16,11 +16,14 @@ function App() {
       alert(JSON.stringify(values, null, 2));
     },
     validationSchema: yup.object({
-      name: yup.string().required("required").max(20),
-      number: yup.string().required("required").max(16),
-      month: yup.string().required("required").length(2),
-      year: yup.string().required("required").length(2),
-      cvc: yup.string().required("required").length(3),
+      name: yup.string().required("This field is required").max(16, "Max 16 characters"),
+      number: yup
+        .string()
+        .required("This field is required")
+        .length(16, "Length must equal 16"),
+      month: yup.string().required().max(2),
+      year: yup.string().required().max(2),
+      cvc: yup.string().required().length(3),
     }),
   });
 

@@ -12,9 +12,11 @@ const Form = ({ formik }: any) => {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.name}
-        hasErrors={formik.touched.name && formik.errors.name}
+        errors={formik.errors.name}
+        touched={formik.touched.name}
         label="CARDHOLDER NAME"
         placeholder="e.g. Jane Appleseed"
+        showError
       />
       <Input
         name="number"
@@ -22,9 +24,11 @@ const Form = ({ formik }: any) => {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.number}
-        hasErrors={formik.touched.number && formik.errors.number}
+        errors={formik.errors.number}
+        touched={formik.touched.number}
         label="CARD NUMBER"
         placeholder="e.g. 1234 5678 9123 0000"
+        showError
       />
       <div className="flex justify-between">
         <div className="flex gap-1">
@@ -34,7 +38,8 @@ const Form = ({ formik }: any) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.month}
-            hasErrors={formik.touched.month && formik.errors.month}
+            errors={formik.errors.month}
+            touched={formik.touched.month}
             placeholder="MM"
             label="MM"
             restStyles="w-[80px] 2xl:w-[100px]"
@@ -45,7 +50,8 @@ const Form = ({ formik }: any) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.year}
-            hasErrors={formik.touched.year && formik.errors.year}
+            errors={formik.errors.year}
+            touched={formik.touched.year}
             placeholder="YY"
             label="YY"
             restStyles="w-[80px] 2xl:w-[100px]"
@@ -57,7 +63,8 @@ const Form = ({ formik }: any) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.cvc}
-          hasErrors={formik.touched.cvc && formik.errors.cvc}
+          errors={formik.errors.cvc}
+          touched={formik.touched.cvc}
           placeholder="e.g. 123"
           label="CVC"
           restStyles="w-[150px] 2xl:w-[200px]"

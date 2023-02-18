@@ -1,7 +1,7 @@
 import { FormikValues } from "formik";
 import { FC } from "react";
 import cardFront from "../assets/bg-card-front.png";
-import { cardNumberFormatting } from "../utils/cardNumberFormatting";
+import { getFormattingArrayOfCardNumbers } from "../utils/getFormattingArrayOfCardNumbers";
 
 interface Props {
   values: FormikValues;
@@ -19,9 +19,16 @@ const CardFront: FC<Props> = ({ values }) => {
         <div className="w-5 h-5 rounded-full border border-white" />
       </div>
       <div className="flex flex-col gap-4 xl:gap-8 2xl:gap-14">
-        <p className="text-white text-2xl xl:text-3xl 2xl:text-4xl">
-          {cardNumberFormatting(values.number)}
-        </p>
+        <div className="flex">
+          {getFormattingArrayOfCardNumbers(values.number).map((item, i) => (
+            <p
+              key={i}
+              className="flex-1 text-white text-2xl xl:text-3xl 2xl:text-4xl"
+            >
+              {item}
+            </p>
+          ))}
+        </div>
         <div className="flex justify-between items-center">
           <p className="text-white tracking-wider uppercase xl:text-xl 2xl:text-2xl">
             {values.name.slice(0, 20)}

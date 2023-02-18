@@ -5,7 +5,9 @@ interface Props {
   type?: React.HTMLInputTypeAttribute;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   value: string;
-  hasErrors: any;
+  errors: any;
+  touched: any;
+  showError?: boolean;
   label: string;
   placeholder: string;
   restStyles?: string;
@@ -17,11 +19,13 @@ const Input: FC<Props> = ({
   type,
   onChange,
   value,
-  hasErrors,
+  errors,
+  touched,
   label,
   placeholder,
   restStyles,
   onBlur,
+  showError,
 }) => {
   return (
     <label className={`flex flex-col ${restStyles}`}>
@@ -30,11 +34,16 @@ const Input: FC<Props> = ({
       >
         <span
           className={`${
-            hasErrors ? "text-red-600" : "text-indigo-900"
+            errors && touched ? "text-red-600" : "text-indigo-900"
           } font-semibold text-sm tracking-widest 2xl:text-2xl`}
         >
           {label}
         </span>
+        {showError && errors && touched ? (
+          <span className="text-sm 2xl:text-2xl text-red-600">{errors}</span>
+        ) : (
+          ""
+        )}
       </div>
       <input
         name={name}
@@ -43,7 +52,7 @@ const Input: FC<Props> = ({
         onChange={onChange}
         onBlur={onBlur}
         className={`outline-none border 2xl:text-2xl ${
-          hasErrors
+          errors && touched
             ? "border-red-400 placeholder:text-red-400"
             : "border-gray-300"
         } rounded-lg px-3 py-2 2xl:px-5 2xl:py-3`}
